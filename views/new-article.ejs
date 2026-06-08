@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать статью - Научный журнал</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .form-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #764ba2;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        textarea {
+            resize: vertical;
+            font-family: inherit;
+        }
+        .help-text {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="/articles" class="btn">← Назад к списку</a>
+
+    <div class="form-card">
+        <h1>✏️ Создание новой статьи</h1>
+
+        <form action="/article/new" method="POST">
+            <div class="form-group">
+                <label>Название статьи *</label>
+                <input type="text" name="title" required placeholder="Введите название статьи">
+            </div>
+
+            <div class="form-group">
+                <label>Авторы *</label>
+                <input type="text" name="authors" required placeholder="Иванов А.А., Петров В.Б.">
+                <div class="help-text">Укажите авторов через запятую</div>
+            </div>
+
+            <div class="form-group">
+                <label>Теги</label>
+                <input type="text" name="tags" placeholder="наука, технологии, исследования">
+                <div class="help-text">Укажите теги через запятую</div>
+            </div>
+
+            <div class="form-group">
+                <label>Содержание статьи *</label>
+                <textarea name="content" rows="10" required placeholder="Введите полный текст статьи..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">📝 Опубликовать статью</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

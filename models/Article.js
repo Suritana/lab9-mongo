@@ -18,4 +18,19 @@ const articleSchema = new mongoose.Schema({
     reviews: [reviewSchema]
 });
 
+// Виртуальное поле для среднего рейтинга
+articleSchema.virtual('averageRating').get(function() {
+    if (this.reviews.length === 0) return 0;
+    const sum = this.reviews.reduce((total, review) => total + review.rating, 0);
+    return (sum / this.reviews.length).toFixed(1);
+});
+
+// Виртуальное поле для количества комментариев
+articleSchema.virtual('reviewCount').get(function() {
+    return this.reviews.length;
+});
+
+articleSchema.set('toJSON', { virtuals: true });
+articleSchema.set('toObject', { virtuals: true });
+
 module.exports = mongoose.model('Article', articleSchema);

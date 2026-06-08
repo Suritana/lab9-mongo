@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Научный журнал - Статьи</title>
+    <title>Научный журнал - Главная</title>
     <style>
         * {
             margin: 0;
@@ -54,10 +54,17 @@
             font-size: 16px;
             transition: transform 0.2s, box-shadow 0.2s;
             font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
         }
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
         }
         .search-group {
             display: flex;
@@ -137,6 +144,12 @@
         .article-card {
             animation: fadeIn 0.3s ease-out;
         }
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -144,13 +157,14 @@
     <div class="header">
         <h1>📚 Научный электронный журнал</h1>
         <p class="subtitle">Современные исследования и разработки</p>
+        <div class="nav-buttons">
+            <a href="/articles" class="btn">📖 Список статей</a>
+            <a href="/top-articles" class="btn btn-secondary">🏆 Топ статей</a>
+            <a href="/article/new" class="btn btn-secondary">✏️ Создать статью</a>
+        </div>
     </div>
 
     <div class="controls">
-        <form action="/articles" method="GET">
-            <button type="submit" class="btn">📖 Список статей</button>
-        </form>
-
         <form action="/search/title" method="POST" class="search-group">
             <input type="text" name="title" placeholder="🔍 Введите название статьи..." value="<%= searchQuery %>">
             <button type="submit" class="btn">Поиск по названию</button>
@@ -166,6 +180,15 @@
                 <% } %>
             </select>
             <button type="submit" class="btn">Поиск по автору</button>
+        </form>
+
+        <form action="/search/date" method="POST" class="search-group">
+            <div class="search-group">
+                <input type="date" name="startDate" placeholder="Дата начала">
+                <span>—</span>
+                <input type="date" name="endDate" placeholder="Дата окончания">
+            </div>
+            <button type="submit" class="btn">📅 Поиск по дате</button>
         </form>
     </div>
 
